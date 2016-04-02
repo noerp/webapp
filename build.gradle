@@ -1,0 +1,12 @@
+dependencies {
+	compile vendor('noerp:base:1.0.0')
+	compile vendor('noerp:entity:1.0.0')
+	compile vendor('noerp:security:1.0.0')
+	compile vendor('noerp:service:1.0.0')
+	compile vendor('noerp:minilang:1.0.0')
+
+	compile fileTree(dir:'lib', include:'*.jar')
+	
+	//compile 'org.springframework:spring-core:4.2.3.RELEASE'
+	//compile 'org.springframework:spring-test:4.2.3.RELEASE'
+}
