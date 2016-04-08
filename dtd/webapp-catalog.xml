@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalog PUBLIC "-//OASIS//DTD Entity Resolution XML Catalog V1.0//EN"
+                         "http://www.oasis-open.org/committees/entity/release/1.0/catalog.dtd">
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
@@ -18,21 +20,12 @@ specific language governing permissions and limitations
 under the License.
 -->
 
-<component name="webapp"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="http://noerp.org/dtds/component.xsd">
+<!--
+  Comment the DTD declaration to avoid looking for it on the web.
+  Alternatively we can place a copy of the DTD locally and refer to it.
+-->
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+  <!-- <public publicId="-//W3C//DTD SVG 1.0//EN" uri="svg10.dtd"/> -->
 
-    <resource-loader name="main" type="component"/>
-
-    <classpath type="dir" location="config"/>
-    <classpath type="dir" location="dtd"/>
-    <classpath type="jar" location="lib/*"/>
-    <classpath type="jar" location="build/libs/*"/>
-
-    <entity-resource type="model" reader-name="main" loader="main" location="entitydef/entitymodel.xml"/>
-    <!--
-    <entity-resource type="group" reader-name="main" loader="main" location="entitydef/entitygroup.xml"/>
-    -->
-
-<!--<test-suite loader="main" location="testdef/webapptests.xml"/>-->
-</component>
+    <system systemId="http://noerp.org/dtds/site-conf.xsd" uri="site-conf.xsd"/>
+</catalog>
