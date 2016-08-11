@@ -104,7 +104,7 @@ public class ApacheFopWorker {
                 }
 
                 try {
-                    String ofbizHome = System.getProperty("ofbiz.home");
+                    String ofbizHome = System.getProperty("noerp.home");
                     File userConfigFile = FileUtil.getFile(ofbizHome + fopPath + "/fop.xconf");
                     if (userConfigFile.exists()) {
                         fopFactory = FopFactory.newInstance(userConfigFile);

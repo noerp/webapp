@@ -53,14 +53,14 @@ public final class NoerpUrlBuilder {
      */
     public static NoerpUrlBuilder from(HttpServletRequest request) throws GenericEntityException, WebAppConfigurationException {
         Assert.notNull("request", request);
-        NoerpUrlBuilder builder = (NoerpUrlBuilder) request.getAttribute("_OFBIZ_URL_BUILDER_");
+        NoerpUrlBuilder builder = (NoerpUrlBuilder) request.getAttribute("_NOERP_URL_BUILDER_");
         if (builder == null) {
             WebSiteProperties webSiteProps = WebSiteProperties.from(request);
             URL url = ConfigXMLReader.getControllerConfigURL(request.getServletContext());
             ControllerConfig config = ConfigXMLReader.getControllerConfig(url);
             String servletPath = (String) request.getAttribute("_CONTROL_PATH_");
             builder = new NoerpUrlBuilder(config, webSiteProps, servletPath);
-            request.setAttribute("_OFBIZ_URL_BUILDER_", builder);
+            request.setAttribute("_NOERP_URL_BUILDER_", builder);
         }
         return builder;
     }
