@@ -44,7 +44,7 @@ import org.noerp.webapp.control.ConfigXMLReader.Event;
 import org.noerp.webapp.control.ConfigXMLReader.RequestMap;
 
 /**
- * XmlRpcEventHandler
+ * JsonRpcEventHandler
  */
 public class JsonRpcEventHandler implements EventHandler {
 
@@ -52,6 +52,9 @@ public class JsonRpcEventHandler implements EventHandler {
 	protected Delegator delegator;
 	protected LocalDispatcher dispatcher;
 
+	/**
+	 * 初始化
+	 */
 	public void init(ServletContext context) throws EventHandlerException {
 		String delegatorName = context.getInitParameter("entityDelegatorName");
 		this.delegator = DelegatorFactory.getDelegator(delegatorName);
@@ -90,6 +93,11 @@ public class JsonRpcEventHandler implements EventHandler {
 		return null;
 	}
 
+	/**
+	 * 
+	 * @author Kevin
+	 *
+	 */
 	class ServiceRpcHandler {
 
 		private String version = "2.0";
@@ -100,6 +108,10 @@ public class JsonRpcEventHandler implements EventHandler {
 		private HttpServletRequest request;
 		private Map<String, Object> result = new HashMap<String, Object>();
 
+		/**
+		 * 
+		 * @param request
+		 */
 		ServiceRpcHandler(HttpServletRequest request) {
 			init(request);
 			
@@ -112,6 +124,11 @@ public class JsonRpcEventHandler implements EventHandler {
 			}
 		}
 
+		/**
+		 * 初始化
+		 * 
+		 * @param request
+		 */
 		public void init(HttpServletRequest request) {
 
 			this.request = request;
@@ -127,10 +144,21 @@ public class JsonRpcEventHandler implements EventHandler {
 			params = UtilGenerics.<Map<String, Object>>cast(request.getAttribute("params"));
 		}
 		
+		/**
+		 * 获得结果
+		 * 
+		 * @return
+		 */
 		public Map<String, Object> getResult(){
 			return result;
 		}
 		
+		/**
+		 * 执行具体的方法
+		 * 
+		 * @return
+		 * @throws ServiceRpcError
+		 */
 		public Map<String, Object> execute() throws ServiceRpcError{
 			
 			if(method == null){
@@ -177,6 +205,11 @@ public class JsonRpcEventHandler implements EventHandler {
             return model.makeValid(resp, ModelService.OUT_PARAM, false, null);
 		}
 		
+		/**
+		 * 获得Basic authorization
+		 * 
+		 * @return
+		 */
 		private Map<String, Object> getAuthorization() {
 			
 			Map<String, Object> userPass = new HashMap<String, Object>();
@@ -199,16 +232,30 @@ public class JsonRpcEventHandler implements EventHandler {
         }
 	}
 
+	/**
+	 * 
+	 * @author Kevin
+	 *
+	 */
 	class ServiceRpcError extends Exception {
 		
 		private static final long serialVersionUID = 8715480445655815910L;
 		private int code;
 		
+		/**
+		 * 
+		 * @param code
+		 * @param message
+		 */
 		ServiceRpcError(int code, String message){
 			super(message);
 			this.code = code;
 		}
 		
+		/**
+		 * 
+		 * @return
+		 */
 		public Map<String, Object> getMap(){
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("code", code);
